@@ -4,6 +4,7 @@ import Picture3 from '../assets/picture3.png'
 import Picture4 from '../assets/picture4.png'
 import Picture5 from '../assets/picture5.png'
 import Picture6 from '../assets/picture6.png'
+import { motion } from 'framer-motion'
 
 const members = [
   {
@@ -75,30 +76,64 @@ export default function Team() {
 
       {/* Header */}
 
-      <div className="flex items-center gap-10 mb-20 max-md:flex-col max-md:items-start max-md:gap-4 max-md:mb-10">
-        <span className="inline-flex items-center px-1.75 py-1 bg-[#B9FF66] rounded-[7px] text-[40px] font-medium">
+      <motion.div
+        className="flex items-center gap-10 mb-20 max-md:flex-col max-md:items-start max-md:gap-4 max-md:mb-10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] font-medium">
           Team
         </span>
         <p className="text-lg leading-relaxed max-w-118.25">
           Meet the skilled and experienced team behind our successful digital marketing strategies
         </p>
-      </div>
+      </motion.div>
 
       {/* Grid */}
-      <div className="grid grid-cols-3 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6">
+      <motion.div
+        className="grid grid-cols-3 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.12
+            }
+          }
+        }}
+      >
         {members.map((m) => (
-          <div
+          <motion.div
             key={m.name}
-            className="border border-[#191A23] rounded-card shadow-[0_5px_0_0_#191A23] py-10 px-8.75 bg-white flex flex-col gap-7"
+            variants={{
+              hidden: { opacity: 0, y: 25 },
+              visible: { opacity: 1, y: 0 }
+            }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ y: -6 }}
+            className="border border-dark rounded-card shadow-[0_5px_0_0_#191A23] py-10 px-8.75 bg-white flex flex-col gap-7"
           >
             <div className='flex items-start justify-between'>
               <div className="flex items-end gap-5 w-full ">
-                <img src={m.img} alt={m.name} />
+                <motion.img
+                  src={m.img}
+                  alt={m.name}
+                  whileHover={{ scale: 1.04 }}
+                  transition={{ duration: 0.3 }}
+                />
 
                 <div className='flex flex-col justify-between flex-1'>
-                  <button className="shrink-0 cursor-pointer bg-transparent border-none p-0 hover:opacity-70 transition-opacity flex justify-end">
+                  <motion.button
+                    className="shrink-0 cursor-pointer bg-transparent border-none p-0 flex justify-end"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
                     <LinkedInIcon />
-                  </button>
+                  </motion.button>
 
                   <div className="flex flex-col gap-1">
                     <span className="text-xl font-medium">{m.name}</span>
@@ -110,16 +145,27 @@ export default function Team() {
 
             </div>
 
-            <div className="h-px bg-[#191A23]" />
+            <motion.div
+              className="h-px bg-dark"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              style={{ originX: 0 }}
+            />
 
             <p className="text-lg">{m.bio}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
       <div className='flex justify-end'>
-        <button className="mt-10 px-19 py-5 border border-transparent bg-[#191A23] text-white rounded-[14px] text-xl hover:bg-[#ffffff] hover:text-[#191A23] hover:border-[#191A23] transition-all flex-shrink-0 max-md:w-full">
+        <motion.button
+          className="mt-10 px-19 py-5 border border-transparent bg-dark text-white rounded-button text-xl shrink-0 max-md:w-full"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+        >
           See all team
-        </button>
+        </motion.button>
       </div>
     </section>
   )

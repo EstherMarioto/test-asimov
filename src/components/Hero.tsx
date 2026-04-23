@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import heroImg from '../assets/hero.png'
 import Amazon from '../assets/amazon.png'
 import Dribbble from '../assets/dribbble.png'
@@ -23,40 +24,96 @@ export default function Hero() {
       <div className="flex items-center gap-[108.54px] mb-17.5 max-md:flex-col max-md:mb-10">
 
         {/* Left */}
-        <div className="flex-1 flex flex-col gap-8.75 max-md:order-2">
-          <h1 className="text-[60px] font-medium max-lg:text-[46px] max-md:text-[36px]">
+        <motion.div
+          className="flex-1 flex flex-col gap-8.75 max-md:order-2"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.15 }
+            }
+          }}
+        >
+          <motion.h1
+            className="text-[60px] font-medium max-lg:text-[46px] max-md:text-[36px]"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 }
+            }}
+            transition={{ duration: 0.6 }}
+          >
             Navigating the digital landscape for success
-          </h1>
-          <p className="text-xl  mr-8.25">
+          </motion.h1>
+
+          <motion.p
+            className="text-xl mr-8.25"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 }
+            }}
+            transition={{ duration: 0.6 }}
+          >
             Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC, social media marketing, and content creation.
-          </p>
-          <button className="self-start px-8.25 py-5 bg-[#191A23] text-white rounded-[14px] text-xl hover:opacity-85 transition-opacity">
+          </motion.p>
+
+          <motion.button
+            className="self-start px-8.25 py-5 bg-dark text-white rounded-button text-xl"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 }
+            }}
+            transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
             Book a consultation
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* Right */}
-        <div className="flex-1 flex justify-center items-center relative max-md:order-1">
+        <motion.div
+          className="flex-1 flex justify-center items-center relative max-md:order-1"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+        >
           <img
             src={heroImg}
             alt="Positivus digital marketing"
             className="relative z-10 w-full max-w-[600.46px]"
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* Company logos */}
-      <div className="flex items-center justify-between gap-[95.91px] max-md:flex-wrap max-md:justify-center max-md:gap-8 h-12">
+      <motion.div
+        className="flex items-center justify-between gap-[95.91px] max-md:flex-wrap max-md:justify-center max-md:gap-8 h-12"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: {
+            transition: { staggerChildren: 0.08, delayChildren: 0.3 }
+          }
+        }}
+      >
         {logos.map((logo, i) => (
-          <img
+          <motion.img
             key={i}
             src={logo.src}
             alt={logo.alt}
             className={`h-full w-auto object-contain grayscale ${logo.alt === 'Dribbble' ? 'scale-62' : ''
               }`}
+            variants={{
+              hidden: { opacity: 0, y: 10 },
+              visible: { opacity: 1, y: 0 }
+            }}
+            transition={{ duration: 0.4 }}
+            whileHover={{ scale: 1.05, filter: 'grayscale(0%)' }}
           />
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

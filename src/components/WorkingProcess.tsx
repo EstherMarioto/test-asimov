@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Plus from '../assets/plus.png'
 import Less from '../assets/less.png'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const steps = [
   {
@@ -42,29 +43,53 @@ export default function WorkingProcess() {
     <section className="px-25">
 
       {/* Header */}
-      <div className="flex items-center gap-10 mb-20 max-md:flex-col max-md:items-start max-md:gap-4 max-md:mb-10">
-        <span className="inline-flex items-center px-1.75 py-1 bg-[#B9FF66] rounded-[7px] text-[40px] font-medium">
+      <motion.div
+        className="flex items-center gap-10 mb-20 max-md:flex-col max-md:items-start max-md:gap-4 max-md:mb-10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] font-medium">
           Our Working Process
         </span>
         <p className="text-lg leading-relaxed max-w-73">
           Step-by-Step Guide to Achieving Your Business Goals
         </p>
-      </div>
+      </motion.div>
 
       {/* Accordion */}
-      <div className="flex flex-col gap-7.5">
+      <motion.div
+        className="flex flex-col gap-7.5"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: { staggerChildren: 0.08 }
+          }
+        }}
+      >
         {steps.map((step, i) => {
           const isOpen = openIndex === i
           return (
-            <div
+            <motion.div
               key={step.number}
-              className={`border border-[#191A23] rounded-card shadow-[0_5px_0_0_#191A23] pl-15 pr-14.25 py-10.25 transition-colors max-md:px-7 max-md:py-6 ${isOpen ? 'bg-[#B9FF66]' : 'bg-[#F3F3F3]'
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              transition={{ duration: 0.4 }}
+              whileHover={{ y: -3 }}
+              className={`border border-dark rounded-card shadow-[0_5px_0_0_#191A23] pl-15 pr-14.25 py-10.25 transition-colors max-md:px-7 max-md:py-6 ${isOpen ? 'bg-green' : 'bg-light'
                 }`}
             >
-              <button
+              <motion.button
                 className="w-full flex items-center justify-between gap-5 cursor-pointer bg-transparent border-none"
                 onClick={() => setOpenIndex(isOpen ? null : i)}
                 aria-expanded={isOpen}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="flex items-center gap-6.25 max-md:gap-4">
                   <span className="text-[60px] font-medium leading-none max-lg:text-[46px] max-md:text-[36px]">
@@ -74,20 +99,35 @@ export default function WorkingProcess() {
                     {step.title}
                   </span>
                 </div>
-                <div className="size-14.5 rounded-full border border-[#191A23] bg-[#f3f3f3] flex items-center justify-center flex-shrink-0 max-md:w-10 max-md:h-10 max-md:text-xl">
+                <motion.div
+                  className="size-14.5 rounded-full border border-dark bg-light flex items-center justify-center shrink-0 max-md:w-10 max-md:h-10"
+                  animate={{ rotate: isOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
                   {isOpen ? <img src={Less} alt="Less" /> : <img src={Plus} alt="Plus" />}
-                </div>
-              </button>
+                </motion.div>
+              </motion.button>
 
-              {isOpen && (
-                <div className="mt-8 pt-7.5 mr-0.75 border-t border-[#191A23]">
-                  <p className="text-lg">{step.desc}</p>
-                </div>
-              )}
-            </div>
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    key="content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: 'easeInOut' }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-8 pt-7.5 mr-0.75 border-t border-dark">
+                      <p className="text-lg">{step.desc}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           )
         })}
-      </div>
+      </motion.div>
 
     </section>
   )

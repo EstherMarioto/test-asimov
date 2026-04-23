@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Logo from '../assets/logo-white.png'
+import { motion } from 'framer-motion'
 
 const navLinks = ['About us', 'Services', 'Use Cases', 'Pricing', 'Blog']
 
@@ -39,62 +40,101 @@ export default function Footer() {
   const [email, setEmail] = useState('')
 
   return (
-    <footer className="px-25">
-      <div className="bg-[#191A23] text-white px-15 pt-13.75 pb-12.5 rounded-t-card">
+    <motion.footer
+      className="px-25"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="bg-dark text-white px-15 pt-13.75 pb-12.5 rounded-t-card">
 
         {/* Top row */}
-        <div className="flex items-center justify-between pb-16.5 max-md:flex-col max-md:items-start max-md:gap-8 max-md:pb-8 max-md:mb-8">
-          <img
+        <motion.div
+          className="flex items-center justify-between pb-16.5 max-md:flex-col max-md:items-start max-md:gap-8 max-md:pb-8 max-md:mb-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.1 }
+            }
+          }}
+        >
+          <motion.img
             src={Logo}
-            alt={"Positivus Logo"}
+            alt="Positivus Logo"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           />
 
           <nav>
             <ul className="flex gap-10 flex-wrap max-md:gap-5">
               {navLinks.map((link) => (
                 <li key={link}>
-                  <a
+                  <motion.a
                     href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="text-lg text-white underline underline-offset-4 hover:text-[#B9FF66] transition-colors"
+                    className="text-lg text-white relative group"
+                    whileHover="hover"
                   >
                     {link}
-                  </a>
+                  </motion.a>
                 </li>
               ))}
             </ul>
           </nav>
 
           <div className="flex items-center gap-5">
-            <a href="#" aria-label="LinkedIn" className="size-7.5 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+            <motion.a
+              href="#"
+              aria-label="LinkedIn"
+              className="size-7.5 rounded-full flex items-center justify-center"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+            >
               <LinkedInIcon />
-            </a>
-            <a href="#" aria-label="Facebook" className="size-7.5  rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+            </motion.a>
+            <motion.a
+              href="#"
+              aria-label="Facebook"
+              className="size-7.5  rounded-full flex items-center justify-center"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+            >
               <FacebookIcon />
-            </a>
-            <a href="#" aria-label="Twitter" className="size-7.5 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+            </motion.a>
+            <motion.a
+              href="#"
+              aria-label="Twitter"
+              className="size-7.5 rounded-full flex items-center justify-center"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+            >
               <TwitterIcon />
-            </a>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
 
         {/* Middle row */}
         <div className="flex gap-38.5 mb-12.5 max-lg:flex-col max-lg:gap-10 max-md:mb-8">
 
           {/* Contact info */}
           <div className="flex flex-col gap-6.75">
-            <span className="inline-flex items-center px-1.75 py-1 bg-[#B9FF66] rounded-[7px] text-xl font-medium text-[#191A23] w-fit">
+            <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-xl font-medium text-dark w-fit">
               Contact us:
             </span>
             <div className="flex flex-col gap-5 max-w-90">
               <p className="text-lg text-white">
                 Email:{' '}
-                <a href="mailto:info@positivus.com" className="hover:text-[#B9FF66] transition-colors">
+                <a href="mailto:info@positivus.com" className="hover:text-green transition-colors">
                   info@positivus.com
                 </a>
               </p>
               <p className="text-lg text-white">
                 Phone:{' '}
-                <a href="tel:+15555678901" className="hover:text-[#B9FF66] transition-colors">
+                <a href="tel:+15555678901" className="hover:text-green transition-colors">
                   555-567-8901
                 </a>
               </p>
@@ -109,33 +149,44 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div className="flex-1 flex items-center w-max-[634px]">
-            <div className="flex py-14.5 px-10 gap-5 bg-[#292A32] rounded-[14px] w-full max-sm:flex-col">
-              <input
+            <div className="flex py-14.5 px-10 gap-5 bg-dark rounded-button w-full max-sm:flex-col">
+              <motion.input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-transparent border border-[#ffffff] rounded-[14px] px-8.75 py-5.5 text-white text-lg outline-none focus:border-[#B9FF66] transition-colors placeholder:text-[#ffffff]"
+                className="flex-1 bg-transparent border border-white rounded-button px-8.75 py-5.5 text-white text-lg outline-none focus:border-green transition-colors placeholder:text-white"
+                whileFocus={{ scale: 1.02 }}
               />
-              <button className="px-8.75 py-5 bg-[#B9FF66] text-[#000000] rounded-[14px] text-xl font-normal hover:opacity-85 transition-opacity whitespace-nowrap flex-shrink-0">
+              <motion.button
+                className="px-8.75 py-5 bg-green text-black rounded-button text-xl"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 Subscribe to news
-              </button>
+              </motion.button>
             </div>
           </div>
 
         </div>
 
         {/* Bottom copyright */}
-        <div className="pt-12.5 border-t border-[#ffffff] flex items-center gap-10 max-md:flex-col max-md:items-start max-md:gap-4 max-md:pt-8">
-          <p className="text-lg text-white">
+        <motion.div
+          className="pt-12.5 border-t border-white flex gap-10"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{ originX: 0 }}
+        >          <p className="text-lg text-white">
             © 2023 Positivus. All Rights Reserved.
           </p>
-          <a href="#" className="text-lg text-white underline underline-offset-4 hover:text-[#B9FF66] transition-colors">
+          <a href="#" className="text-lg text-white underline underline-offset-4 hover:text-green transition-colors">
             Privacy Policy
           </a>
-        </div>
+        </motion.div>
 
       </div>
-    </footer>
+    </motion.footer >
   )
 }
