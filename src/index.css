@@ -1,0 +1,43 @@
+@import "@fontsource/space-grotesk/300.css";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "tailwindcss";
+
+@theme {
+  --color-green: #B9FF66;
+  --color-dark: #191A23;
+  --color-light: #F3F3F3;
+
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+
+  --radius-card: 45px;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    color: #191A23;
+    background: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.15;
+  }
+
+  p { margin: 0; }
+  ul, ol { list-style: none; margin: 0; padding: 0; }
+  a { text-decoration: none; color: inherit; }
+  img { display: block; max-width: 100%; }
+  button { cursor: pointer; font-family: inherit; }
+  input, textarea { font-family: inherit; }
+}
