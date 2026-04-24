@@ -80,18 +80,15 @@ export default function Testimonials() {
                 animate={{ opacity: i === current ? 1 : 0.6, scale: i === current ? 1 : 0.98 }}
                 transition={{ duration: 0.4 }}
               >
-                {/* Card com a citação */}
                 <div className="border border-green rounded-card pt-12 px-13 pb-13 max-md:p-8">
                   <p className="text-white text-lg">"{t.quote}"</p>
                 </div>
 
-                {/* Balão de fala — triângulo verde */}
                 <svg width="64" height="38.9" viewBox="0 0 64 38.9" fill="none" className="ml-15 -mt-px">
                   <line x1="0" y1="0.5" x2="64" y2="0.5" stroke="#191A23" strokeWidth="2" />
                   <path d="M0 0 L32 38.9 L64 0" stroke="#B9FF66" strokeWidth="1" />
                 </svg>
 
-                {/* Autor abaixo */}
                 <div className="flex flex-col mt-5 pl-20">
                   <span className="text-xl font-medium text-green">{t.name}</span>
                   <span className="text-lg text-white">{t.role}</span>

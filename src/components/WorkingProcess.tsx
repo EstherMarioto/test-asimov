@@ -36,6 +36,18 @@ const steps = [
   },
 ]
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+}
+
+const container = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08 as const }
+  }
+}
+
 export default function WorkingProcess() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
@@ -45,9 +57,9 @@ export default function WorkingProcess() {
       {/* Header */}
       <motion.div
         className="flex items-center gap-10 mb-20 max-md:flex-col max-md:items-start max-md:gap-4 max-md:mb-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        initial="hidden"
+        whileInView="visible"
+        variants={fadeUp}
         transition={{ duration: 0.6 }}
       >
         <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] font-medium">
@@ -64,31 +76,32 @@ export default function WorkingProcess() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        variants={{
-          hidden: {},
-          visible: {
-            transition: { staggerChildren: 0.08 }
-          }
-        }}
+        variants={container}
       >
         {steps.map((step, i) => {
           const isOpen = openIndex === i
           return (
             <motion.div
               key={step.number}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
+              variants={fadeUp}
               transition={{ duration: 0.4 }}
               whileHover={{ y: -3 }}
-              className={`border border-dark rounded-card shadow-[0_5px_0_0_#191A23] pl-15 pr-14.25 py-10.25 transition-colors max-md:px-7 max-md:py-6 ${isOpen ? 'bg-green' : 'bg-light'
-                }`}
+              className={`
+                border border-dark rounded-card
+                shadow-[0_5px_0_0_#191A23]
+                pl-15 pr-14.25 py-10.25
+                transition-colors
+                max-md:px-7 max-md:py-6
+                ${isOpen ? 'bg-green' : 'bg-light'}
+            `}
             >
               <motion.button
                 className="w-full flex items-center justify-between gap-5 cursor-pointer bg-transparent border-none"
                 onClick={() => setOpenIndex(isOpen ? null : i)}
                 aria-expanded={isOpen}
+                aria-controls={`step-${i}`}
+                id={`trigger-${i}`}
+                type="button"
                 whileTap={{ scale: 0.98 }}
               >
                 <div className="flex items-center gap-6.25 max-md:gap-4">
@@ -104,7 +117,7 @@ export default function WorkingProcess() {
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {isOpen ? <img src={Less} alt="Less" /> : <img src={Plus} alt="Plus" />}
+                  {isOpen ? <img src={Less} alt="Collapse" /> : <img src={Plus} alt="Expand" />}
                 </motion.div>
               </motion.button>
 
@@ -117,6 +130,7 @@ export default function WorkingProcess() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.35, ease: 'easeInOut' }}
                     className="overflow-hidden"
+                    id={`step-${i}`}
                   >
                     <div className="mt-8 pt-7.5 mr-0.75 border-t border-dark">
                       <p className="text-lg">{step.desc}</p>
