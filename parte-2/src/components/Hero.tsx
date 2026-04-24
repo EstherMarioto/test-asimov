@@ -1,5 +1,6 @@
 import { motion, type Variants } from 'framer-motion'
 import { ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react'
+import { EASE } from '../lib/motion'
 
 const BULLETS = [
   '+40 horas de conteúdo direto ao ponto',
@@ -15,8 +16,6 @@ const AVATAR_COLORS = [
   'bg-amber-500',
   'bg-emerald-500',
 ]
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 const container: Variants = {
   hidden: {},
@@ -136,7 +135,11 @@ function CodePreview() {
   )
 }
 
-export function Hero() {
+interface Props {
+  onComecar: () => void
+}
+
+export function Hero({ onComecar }: Props) {
   return (
     <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-[#030308]">
       {/* Dot grid */}
@@ -240,6 +243,7 @@ export function Hero() {
               className="flex flex-wrap items-center gap-3 pt-1"
             >
               <motion.button
+                onClick={onComecar}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
                 className="group flex items-center gap-2.5 rounded-xl bg-violet-600 px-7 py-4 text-base font-semibold text-white shadow-lg shadow-violet-600/20 transition-colors hover:bg-violet-500"
@@ -251,14 +255,15 @@ export function Hero() {
                 />
               </motion.button>
 
-              <motion.button
+              <motion.a
+                href="#modulos"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
                 className="flex items-center gap-2 rounded-xl border border-white/10 px-7 py-4 text-base font-medium text-slate-300 transition-all hover:border-white/20 hover:bg-white/4 hover:text-white"
               >
                 Ver o que vou aprender
                 <ChevronDown size={16} className="text-slate-500" />
-              </motion.button>
+              </motion.a>
             </motion.div>
 
             {/* Social proof */}

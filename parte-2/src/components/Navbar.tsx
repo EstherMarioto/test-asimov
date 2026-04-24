@@ -9,7 +9,12 @@ const NAV_LINKS = [
   { label: 'FAQ', href: '#faq' },
 ]
 
-export function Navbar() {
+interface Props {
+  onEntrar: () => void
+  onComecar: () => void
+}
+
+export function Navbar({ onEntrar, onComecar }: Props) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -20,10 +25,10 @@ export function Navbar() {
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6">
-        <div className="flex items-center justify-between rounded-2xl border border-white/[0.07] bg-white/[0.04] px-5 py-3 backdrop-blur-xl">
+        <div className="flex items-center justify-between rounded-2xl border border-white/[0.07] bg-white/4 px-5 py-3 backdrop-blur-xl">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-violet-500 to-cyan-500">
               <span className="text-sm font-bold text-white">A</span>
             </div>
             <span className="text-lg font-semibold tracking-tight text-white">
@@ -37,7 +42,7 @@ export function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="rounded-lg px-4 py-2 text-sm text-slate-400 transition-colors hover:bg-white/[0.05] hover:text-white"
+                className="rounded-lg px-4 py-2 text-sm text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
               >
                 {link.label}
               </a>
@@ -46,22 +51,25 @@ export function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden items-center gap-3 md:flex">
-            <a href="#" className="text-sm text-slate-500 transition-colors hover:text-white">
+            <button
+              onClick={onEntrar}
+              className="text-sm text-slate-500 transition-colors hover:text-white"
+            >
               Entrar
-            </a>
-            <motion.a
-              href="#"
+            </button>
+            <motion.button
+              onClick={onComecar}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-[#030308] transition-colors hover:bg-slate-100"
             >
               Começar agora
-            </motion.a>
+            </motion.button>
           </div>
 
           {/* Mobile hamburger */}
           <button
-            className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-white/[0.05] hover:text-white md:hidden"
+            className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-white/5 hover:text-white md:hidden"
             onClick={() => setOpen(v => !v)}
             aria-label="Menu"
           >
@@ -77,7 +85,7 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -8, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="mt-2 overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.04] px-4 py-3 backdrop-blur-xl"
+              className="mt-2 overflow-hidden rounded-2xl border border-white/[0.07] bg-white/4 px-4 py-3 backdrop-blur-xl"
             >
               <nav className="flex flex-col gap-1">
                 {NAV_LINKS.map(link => (
@@ -85,22 +93,25 @@ export function Navbar() {
                     key={link.label}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="rounded-xl px-4 py-3 text-slate-300 transition-colors hover:bg-white/[0.05] hover:text-white"
+                    className="rounded-xl px-4 py-3 text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
                   >
                     {link.label}
                   </a>
                 ))}
               </nav>
-              <div className="mt-3 flex flex-col gap-2 border-t border-white/[0.06] pt-3">
-                <a href="#" className="px-4 py-2.5 text-center text-sm text-slate-400 hover:text-white">
+              <div className="mt-3 flex flex-col gap-2 border-t border-white/6 pt-3">
+                <button
+                  onClick={() => { setOpen(false); onEntrar() }}
+                  className="px-4 py-2.5 text-center text-sm text-slate-400 hover:text-white"
+                >
                   Entrar
-                </a>
-                <a
-                  href="#"
+                </button>
+                <button
+                  onClick={() => { setOpen(false); onComecar() }}
                   className="rounded-xl bg-white py-3 text-center text-sm font-semibold text-[#030308] hover:bg-slate-100"
                 >
                   Começar agora
-                </a>
+                </button>
               </div>
             </motion.div>
           )}
