@@ -17,7 +17,7 @@ const itemVariants = {
 export function NavItem({ link }: INavItemProps) {
     return (
         <motion.li variants={itemVariants}>
-            <a href={link.href} className="text-xl relative group text-black">
+            <a href={link.href} className="text-xl relative group text-black text-nowrap">
                 {link.title}
                 <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-black transition-all duration-300 group-hover:w-full" />
             </a>

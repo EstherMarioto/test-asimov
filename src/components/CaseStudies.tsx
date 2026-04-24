@@ -37,18 +37,18 @@ const fadeUpBig = {
 }
 export default function CaseStudies() {
   return (
-    <section className="py-35 px-25" id="use-cases">
+    <section className="py-35 px-25 max-lg:px-5 max-lg:py-14" id="use-cases">
 
       {/* Header */}
       <motion.div
-        className="flex items-center gap-10 mb-20 max-md:flex-col max-md:items-start max-md:gap-4 max-md:mb-10"
+        className="flex items-center gap-10 mb-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-lg:mb-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeUp}
         transition={fadeUpTransition}
       >
-        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] font-medium">
+        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] max-lg:text-[28px] font-medium">
           Case Studies
         </span>
         <p className="text-lg leading-relaxed max-w-145">
@@ -58,12 +58,12 @@ export default function CaseStudies() {
 
       {/* Cases */}
       <motion.div
-        className="bg-dark rounded-card px-15 py-17.5 max-md:px-8 max-md:py-10"
+        className="bg-dark rounded-card px-15 py-17.5 max-lg:px-8 max-lg:py-10"
         viewport={{ once: true }}
         {...fadeUpBig}>
 
         <motion.div
-          className="grid grid-cols-3 max-md:grid-cols-1"
+          className="grid grid-cols-3 max-lg:grid-cols-1 "
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}

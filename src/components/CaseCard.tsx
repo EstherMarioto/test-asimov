@@ -26,12 +26,12 @@ export function CaseCard({ c, i, isLast }: ICaseCardProps) {
             transition={fadeUpTransition}
             whileHover={{ y: -4 }}
             className={`
-        flex flex-col gap-5 px-16 max-lg:px-10 max-md:px-0
+        flex flex-col gap-5 px-16 max-lg:px-0
         ${i === 0 ? 'pl-0' : ''}
         ${isLast ? 'pr-0 border-r-0' : 'border-r border-white'}
-        max-md:border-r-0 max-md:border-b max-md:border-white
-        max-md:pb-10 max-md:mb-10
-        last:max-md:border-b-0 last:max-md:mb-0 last:max-md:pb-0
+        max-lg:border-r-0 max-lg:border-b max-lg:border-white
+        max-lg:pb-10 max-lg:mb-10
+        last:max-lg:border-b-0 last:max-lg:mb-0 last:max-lg:pb-0
       `}
         >
             <p className="text-white text-lg leading-relaxed">

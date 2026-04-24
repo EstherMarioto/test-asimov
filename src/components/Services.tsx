@@ -68,15 +68,15 @@ const fadeIn = {
 
 export default function Services() {
   return (
-    <section className="pt-35 pb-25 px-25" id="services">
+    <section className="pt-35 pb-25 px-25 max-lg:px-5 max-lg:pt-14 max-lg:pb-10" id="services">
 
       {/* Header */}
       <motion.div
-        className="flex items-center gap-10 mb-20 max-md:flex-col max-md:items-start max-md:gap-4 max-md:mb-10"
+        className="flex items-center gap-10 mb-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-lg:mb-10"
         {...fadeIn}
         viewport={{ once: true }}
       >
-        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] font-medium">
+        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] max-lg:text-[28px] font-medium">
           Services
         </span>
         <p className="text-lg leading-relaxed max-w-145">
@@ -86,7 +86,7 @@ export default function Services() {
 
       {/* Grid */}
       <motion.div
-        className="grid grid-cols-2 gap-10 max-md:grid-cols-1 max-md:gap-6"
+        className="grid grid-cols-2 gap-10 max-xl:grid-cols-1 max-lg:gap-6"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}

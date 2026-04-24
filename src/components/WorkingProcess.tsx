@@ -52,17 +52,17 @@ export default function WorkingProcess() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section className="px-25">
+    <section className="px-25 max-lg:px-5">
 
       {/* Header */}
       <motion.div
-        className="flex items-center gap-10 mb-20 max-md:flex-col max-md:items-start max-md:gap-4 max-md:mb-10"
+        className="flex items-center gap-10 mb-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-lg:mb-10"
         initial="hidden"
         whileInView="visible"
         variants={fadeUp}
         transition={{ duration: 0.6 }}
       >
-        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] font-medium">
+        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] max-lg:text-[28px] font-medium">
           Our Working Process
         </span>
         <p className="text-lg leading-relaxed max-w-73">
@@ -91,7 +91,7 @@ export default function WorkingProcess() {
                 shadow-[0_5px_0_0_#191A23]
                 pl-15 pr-14.25 py-10.25
                 transition-colors
-                max-md:px-7 max-md:py-6
+                max-lg:px-7 max-lg:py-6
                 ${isOpen ? 'bg-green' : 'bg-light'}
             `}
             >
@@ -104,16 +104,16 @@ export default function WorkingProcess() {
                 type="button"
                 whileTap={{ scale: 0.98 }}
               >
-                <div className="flex items-center gap-6.25 max-md:gap-4">
-                  <span className="text-[60px] font-medium leading-none max-lg:text-[46px] max-md:text-[36px]">
+                <div className="flex items-center gap-6.25 max-lg:gap-4 min-w-0 flex-1">
+                  <span className="text-[60px] font-medium leading-none max-lg:text-[36px] max-sm:text-[28px]">
                     {step.number}
                   </span>
-                  <span className="text-[30px] font-medium text-left max-lg:text-2xl max-md:text-xl">
+                  <span className="text-[30px] font-medium text-left max-lg:text-xl">
                     {step.title}
                   </span>
                 </div>
                 <motion.div
-                  className="size-14.5 rounded-full border border-dark bg-light flex items-center justify-center shrink-0 max-md:w-10 max-md:h-10"
+                  className="size-14.5 rounded-full border border-dark bg-light flex items-center justify-center shrink-0 max-lg:w-10 max-lg:h-10 max-sm:w-8 max-sm:h-8"
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                 >

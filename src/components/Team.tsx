@@ -49,18 +49,18 @@ const members = [
 
 export default function Team() {
   return (
-    <section className="pt-35 pb-25 px-25" id="about">
+    <section className="pt-35 pb-25 px-25 max-lg:px-5 max-lg:pt-14 max-lg:pb-10" id="about">
 
       {/* Header */}
 
       <motion.div
-        className="flex items-center gap-10 mb-20 max-md:flex-col max-md:items-start max-md:gap-4 max-md:mb-10"
+        className="flex items-center gap-10 mb-20 max-lg:flex-col max-lg:items-start max-lg:gap-4 max-lg:mb-10"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] font-medium">
+        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] max-lg:text-[28px] font-medium">
           Team
         </span>
         <p className="text-lg leading-relaxed max-w-118.25">
@@ -70,7 +70,7 @@ export default function Team() {
 
       {/* Grid */}
       <motion.div
-        className="grid grid-cols-3 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-6"
+        className="grid grid-cols-3 gap-10 max-lg:grid-cols-1 max-lg:gap-6 max-xl:grid-cols-2"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -89,7 +89,7 @@ export default function Team() {
       </motion.div>
       <div className='flex justify-end'>
         <motion.button
-          className="mt-10 px-19 py-5 border border-transparent bg-dark text-white rounded-button text-xl shrink-0 max-md:w-full"
+          className="mt-10 px-19 py-5 border border-transparent bg-dark text-white rounded-button text-xl shrink-0 max-lg:w-full"
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
         >

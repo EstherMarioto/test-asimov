@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Logo from '../assets/logo-black.png'
 import { motion } from 'framer-motion'
 import { NavItem, type NavLink } from './NavItem'
@@ -32,12 +33,13 @@ const listVariants = {
   }
 }
 
-
 export default function Navbar() {
-  return (
-    <motion.nav {...navAnimation} className="pt-15 pb-17.5 select-none" aria-label="Main navigation">
+  const [open, setOpen] = useState(false)
 
-      <div className="px-25 flex items-center justify-between gap-[209.46px]">
+  return (
+    <motion.nav {...navAnimation} className="pt-15 pb-17.5 max-lg:pt-5 max-lg:pb-5 select-none" aria-label="Main navigation">
+
+      <div className="px-25 max-xl:px-5 flex items-center justify-between gap-5">
 
         {/* Logo */}
         <motion.img
@@ -47,7 +49,8 @@ export default function Navbar() {
           {...logoAnimation}
         />
 
-        <div className="flex items-center gap-10">
+        {/* Desktop nav */}
+        <div className="flex items-center gap-10 max-lg:hidden">
 
           {/* Lista */}
           <motion.ul
@@ -59,27 +62,58 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <NavItem key={link.id} link={link} />
             ))}
-          </motion.ul>
 
-          {/* Botão */}
-          <button
-            className="
+            <button
+              className="
             text-xl
-            px-8.75 py-5 
+            px-8.75 py-5
             border border-dark rounded-button
-    
+
             transition-all duration-300 ease-in-out
           hover:bg-dark hover:text-white
             hover:scale-[1.03] active:scale-[0.98]
-
-            max-md:px-4 max-md:py-2
           "
-          >
-            Request a quote
-          </button>
+            >
+              Request a quote
+            </button>
+          </motion.ul>
+
+          {/* Botão */}
+
 
         </div>
+
+        {/* Hamburger - tablet/mobile only */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="hidden max-lg:flex flex-col justify-center gap-1.5 size-8 bg-transparent border-none cursor-pointer"
+          aria-label="Toggle menu"
+          aria-expanded={open}
+        >
+          <span className={`block h-0.5 w-full bg-dark rounded-full transition-all duration-300 ${open ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`block h-0.5 w-full bg-dark rounded-full transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
+          <span className={`block h-0.5 w-full bg-dark rounded-full transition-all duration-300 ${open ? '-rotate-45 -translate-y-2' : ''}`} />
+        </button>
       </div>
+
+      {/* Tablet/mobile dropdown */}
+      {open && (
+        <div className="hidden max-lg:flex flex-col gap-6 px-5 pb-6 pt-6 mt-4 border-t border-dark/10">
+          {navLinks.map(link => (
+            <a
+              key={link.id}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="text-xl text-dark hover:text-green transition-colors"
+            >
+              {link.title}
+            </a>
+          ))}
+          <button className="text-xl px-8.75 py-5 border border-dark rounded-button transition-all duration-300 hover:bg-dark hover:text-white self-start">
+            Request a quote
+          </button>
+        </div>
+      )}
     </motion.nav>
   )
 }

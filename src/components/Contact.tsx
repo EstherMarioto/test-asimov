@@ -11,18 +11,18 @@ export default function Contact() {
   }
 
   return (
-    <section className="px-25 pb-35" id="contact">
+    <section className="px-25 pb-35 max-lg:px-5 max-lg:pb-14" id="contact">
 
       {/* Header */}
 
       <motion.div
-        className="flex items-center gap-10 mb-20 max-md:flex-col max-md:items-start max-md:gap-4 max-md:mb-10"
+        className="flex items-center gap-10 mb-20 max-lg:flex-col max-xl:items-start max-lg:gap-4 max-lg:mb-10"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] font-medium">
+        <span className="inline-flex items-center px-1.75 py-1 bg-green rounded-[7px] text-[40px] max-lg:text-[28px] font-medium">
           Contact Us
         </span>
         <p className="text-lg leading-relaxed max-w-80.75">
@@ -31,14 +31,14 @@ export default function Contact() {
       </motion.div>
 
       <motion.div
-        className="bg-light rounded-card pl-25 py-15 relative overflow-hidden max-lg:px-15 max-md:px-8 max-md:py-10"
+        className="bg-light rounded-card pl-25 py-15 relative overflow-hidden max-lg:px-8 max-lg:py-10"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
 
-        <div className="flex items-start max-md:flex-col">
+        <div className="flex items-center xl:items-start max-lg:flex-col">
 
           {/* Form */}
           <motion.form
@@ -56,9 +56,9 @@ export default function Contact() {
           >
 
             {/* Radio options */}
-            <div className="flex gap-8.75">
+            <div className="flex flex-col gap-8.75 sm:flex-row">
               <motion.label
-                className="flex items-center gap-3.5 cursor-pointer text-lg"
+                className="flex gap-3.5 cursor-pointer text-lg"
                 whileTap={{ scale: 0.97 }}
               >
                 <input
@@ -139,7 +139,7 @@ export default function Contact() {
         </div>
         {/* Decoration */}
         <motion.div
-          className="absolute -right-81.25 top-[8%] max-md:hidden"
+          className="absolute -right-81.25 top-[8%] max-xl:hidden"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}

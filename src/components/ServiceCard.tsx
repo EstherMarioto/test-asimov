@@ -27,9 +27,9 @@ export function ServiceCard({ svc }: IServiceCardProps) {
             whileHover={{ y: -6 }}
             className={`${svc.bg} border border-dark rounded-card shadow-[0_5px_0_0_#191A23] p-12.5 min-h-77.5 flex gap-4 max-md:flex-col max-md:p-8`}
         >
-            <div className="flex flex-col flex-1 min-w-0 justify-between">
+            <div className="flex flex-col flex-1 min-w-0 justify-between max-md:items-center max-md:justify-start max-md:gap-8">
                 <h3
-                    className={`text-[30px] font-medium leading-tight ${svc.dark ? 'text-white' : 'text-dark'
+                    className={`text-[30px] font-medium leading-tight max-md:text-center ${svc.dark ? 'text-white' : 'text-dark'
                         }`}
                 >
                     {lines.map((line, i) => (
@@ -53,7 +53,7 @@ export function ServiceCard({ svc }: IServiceCardProps) {
                 </div>
             </div>
 
-            <div className="flex items-center shrink-0">
+            <div className="flex items-center shrink-0 max-md:justify-center">
                 <motion.img
                     src={svc.img}
                     alt={svc.title}

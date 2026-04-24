@@ -34,12 +34,12 @@ const sectionAnimation = {
 export default function CtaBanner() {
   return (
     <motion.section
-      className="py-[23.5px] px-25"
+      className="py-[23.5px] px-25 max-lg:px-5"
       {...sectionAnimation}
       viewport={{ once: true }}
     >
       <motion.div
-        className="bg-light rounded-card p-15 flex items-center relative max-md:flex-col max-md:px-8 max-md:py-10"
+        className="bg-light rounded-card p-15 flex items-center relative max-xl:flex-col max-xl:px-8 max-xl:py-10"
         initial="hidden"
         whileInView="visible"
         variants={container}
@@ -65,7 +65,7 @@ export default function CtaBanner() {
             Contact us today to learn more about how our digital marketing services can help your business grow and succeed online.
           </motion.p>
           <motion.button
-            className="self-start px-8.75 py-5 bg-dark text-white rounded-button text-xl"
+            className="self-start px-8.75 py-5 bg-dark text-white rounded-button text-xl max-lg:self-stretch"
             variants={fadeUp}
             transition={fadeUpTransition}
             whileHover={{ scale: 1.03 }}
@@ -76,7 +76,7 @@ export default function CtaBanner() {
         </div>
 
         <motion.div
-          className="absolute right-0 max-md:hidden"
+          className="absolute right-0 max-xl:hidden"
           {...imageAnimation}
 
         >
