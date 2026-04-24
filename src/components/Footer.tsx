@@ -43,7 +43,7 @@ export default function Footer() {
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
-      <div className="bg-[#191A23] text-white px-6 sm:px-10 lg:px-15 pt-12 pb-10 rounded-t-card overflow-hidden">
+      <div className="bg-dark text-white px-6 sm:px-10 lg:px-15 pt-12 pb-10 rounded-t-card overflow-hidden">
 
         {/* TOP */}
         <div className="flex flex-col items-center xl:flex-row lg:items-center justify-between gap-8 pb-12">
@@ -56,7 +56,7 @@ export default function Footer() {
                 <li key={link}>
                   <a
                     href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="text-white text-base lg:text-lg hover:text-[#B9FF66] transition"
+                    className="text-white text-base lg:text-lg hover:text-green transition"
                   >
                     {link}
                   </a>
@@ -77,21 +77,21 @@ export default function Footer() {
 
           {/* CONTACT */}
           <div className="flex flex-col gap-6 items-center xl:items-start">
-            <span className="bg-[#B9FF66] text-[#191A23] px-2 py-1 rounded-md w-fit font-medium">
+            <span className="bg-green text-dark px-2 py-1 rounded-md w-fit font-medium">
               Contact us:
             </span>
 
             <div className="flex flex-col gap-4 max-w-sm items-center xl:items-start">
               <p>
                 Email:{' '}
-                <a href="mailto:info@positivus.com" className="hover:text-[#B9FF66]">
+                <a href="mailto:info@positivus.com" className="hover:text-green">
                   info@positivus.com
                 </a>
               </p>
 
               <p>
                 Phone:{' '}
-                <a href="tel:+15555678901" className="hover:text-[#B9FF66]">
+                <a href="tel:+15555678901" className="hover:text-green">
                   555-567-8901
                 </a>
               </p>
@@ -115,7 +115,7 @@ export default function Footer() {
                 className="flex-1 bg-transparent border border-white rounded-xl px-4 py-3 text-white"
               />
 
-              <button className="bg-[#B9FF66] text-black px-6 py-3 rounded-xl whitespace-nowrap">
+              <button className="bg-green text-black px-6 py-3 rounded-xl whitespace-nowrap">
                 Subscribe to news
               </button>
 
@@ -127,7 +127,7 @@ export default function Footer() {
         {/* BOTTOM */}
         <div className="border-t border-white pt-8 flex flex-col md:flex-row gap-4 md:items-center">
           <p>© 2023 Positivus. All Rights Reserved.</p>
-          <a href="#" className="underline hover:text-[#B9FF66]">
+          <a href="#" className="underline hover:text-green">
             Privacy Policy
           </a>
         </div>
